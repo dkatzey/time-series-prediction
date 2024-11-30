@@ -1,0 +1,8 @@
+echo "__pycache__/" >> .gitignore
+echo "*.pyc" >> .gitignore
+echo "*.pyo" >> .gitignore
+echo "env/" >> .gitignore
+echo "*.log" >> .gitignore
+echo "*.png" >> .gitignore
+echo ".DS_Store" >> .gitignore
+

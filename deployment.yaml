@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: time-series-app
+  labels:
+    app: time-series-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: time-series-app
+  template:
+    metadata:
+      labels:
+        app: time-series-app
+    spec:
+      containers:
+      - name: time-series-app
+        image: us-central1-docker.pkg.dev/lreg-443220/time-series-repo/time-series-api:latest
+        ports:
+        - containerPort: 5000
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 5000
+          initialDelaySeconds: 5
+          periodSeconds: 10
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 5000
+          initialDelaySeconds: 10
+
